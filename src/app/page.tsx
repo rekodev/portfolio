@@ -30,7 +30,7 @@ import javaScriptLogo from '../../public/stack/javascript-logo.png';
 import reactLogo from '../../public/stack/react-logo.png';
 import nextjsLogo from '../../public/stack/nextjs.svg';
 import expressjsLogo from '../../public/stack/expressjs-logo.png';
-import mongoDBLogo from '../../public/stack/MongoDB-logo.png';
+import mongoDBLogo from '../../public/stack/mongodb-logo.png';
 import tailwindLogo from '../../public/stack/Tailwind-logo.png';
 import gitLogo from '../../public/stack/git-logo.png';
 import styledComponentsLogo from '../../public/stack/styled-components-logo.png';
