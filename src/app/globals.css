@@ -23,3 +23,8 @@ body {
   font-family: 'burtons';
   src: url('../../public/Burtons.otf');
 }
+
+@font-face {
+  font-family: 'sharp-grotesk';
+  src: url('../../public/SharpGrotesk-Medium25.otf');
+}

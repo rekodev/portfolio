@@ -11,7 +11,6 @@ import {
   SiNodedotjs,
   SiTailwindcss,
   SiJavascript,
-  SiTypescript,
 } from 'react-icons/si';
 import { RiShareBoxLine } from 'react-icons/ri';
 import { TbBrandNextjs } from 'react-icons/tb';
@@ -45,7 +44,9 @@ export default function Home() {
       <main className='bg-transparent max-w-7xl mx-auto px-10 md:px-20 lg:px-40 '>
         <section className='min-h-screen'>
           <nav className='py-8 flex justify-between items-center'>
-            <h1 className='text-xl font-burtons dark:text-white'>rekodev</h1>
+            <h1 className='text-lg font-sharpGrotesk dark:text-white'>
+              rekodev
+            </h1>
             <ul className='flex items-center'>
               <li>
                 <ThemeSwitcher />
@@ -53,7 +54,8 @@ export default function Home() {
               <li>
                 <a
                   className='flex items-center gap-1 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white px-4 py-2 rounded-md ml-6'
-                  href='#'
+                  href='/arturas-tyskevicius.pdf'
+                  download='arturas-tyskevicius.pdf'
                 >
                   <FiDownload className='text-lg' />
                   CV

@@ -6,17 +6,19 @@ import { FaSun } from 'react-icons/fa';
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className='flex items-center'>
-      {theme === 'dark' ? (
+      {resolvedTheme === 'dark' ? (
         <button onClick={() => setTheme('light')}>
           <FaSun className='text-2xl text-white' />
         </button>
