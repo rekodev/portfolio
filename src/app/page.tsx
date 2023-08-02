@@ -383,14 +383,14 @@ export default function Home() {
                 </p>
                 <div className='flex'>
                   <a
-                    href='https://rekodev.github.io/ChampSelect'
+                    href='https://portfolio-rekodev.vercel.app/'
                     className='flex items-center gap-1 justify-start text-sm text-gray-800 border border-gray-800 border-solid py-1 px-2 rounded-md mr-2  dark:text-gray-200 dark:border-gray-200'
                   >
                     Live{' '}
                     <RiShareBoxLine className='text-lg dark:text-gray-200' />
                   </a>
                   <a
-                    href='https://github.com/rekodev/ChampSelect'
+                    href='https://github.com/rekodev/portfolio'
                     className='py-1 px-2 rounded-md text-sm text-white border border-solid border-transparent bg-gray-800 dark:text-gray-800 dark:bg-white'
                   >
                     <AiFillGithub className='inline text-lg mb-1 mr-1' />
