@@ -252,13 +252,6 @@ export default function Home() {
                     Live{' '}
                     <RiShareBoxLine className='text-lg dark:text-gray-200' />
                   </a>
-                  <a
-                    href='https://github.com/rekodev/ChampSelect'
-                    className='py-1 px-2 rounded-md text-sm text-white border border-solid border-transparent bg-gray-800 dark:text-gray-800 dark:bg-white'
-                  >
-                    <AiFillGithub className='inline text-lg mb-1 mr-1' />
-                    GitHub
-                  </a>
                 </div>
               </div>
             </div>
