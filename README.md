@@ -1,8 +1,37 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Portfolio by rekodev
+
+Welcome to my personal portfolio project showcasing six of my major projects. One of these includes a real-world business application for Antiaging School, which I built from front to back and launched on a VPS server.
+
+You can view the live portfolio at [this link](https://portfolio-rekodev.vercel.app/).
+
+## Project Overview
+
+This portfolio was built using [React](https://reactjs.org/) (specifically, [Next.js](https://nextjs.org/)) and [Tailwind CSS](https://tailwindcss.com/). The website is divided into several sections:
+
+- **Main:** An introduction and brief overview of the portfolio.
+- **About Me:** Personal information about me and my journey in the tech industry.
+- **Skills:** A showcase of my technical skills and competencies.
+- **Portfolio:** Displays the six projects I've worked on. Each project card has one or two buttons for accessing the project live or its GitHub repository.
+
+Please note, the Antiaging School project does not have a GitHub repository as its code is private, and the "Baigiamasis Projektas" does not have a live version as I haven't deployed the backend.
+
 ## Getting Started
 
-First, run the development server:
+First, clone the repository:
+
+```bash
+git clone https://github.com/rekodev/portfolio.git
+```
+
+Navigate into the cloned repository:
+
+```bash
+cd portfolio
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -18,17 +47,4 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
