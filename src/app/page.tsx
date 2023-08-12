@@ -244,7 +244,7 @@ export default function Home() {
                 </p>
                 <div className='flex'>
                   <a
-                    href='https://64d7a45bf5a8af118546d52f--jazzy-puppy-e4bd22.netlify.app/'
+                    href='https://rekodev-rpsls.netlify.app/'
                     className='flex items-center gap-1 justify-start text-sm text-gray-800 border border-gray-800 border-solid py-1 px-2 rounded-md mr-2  dark:text-gray-200 dark:border-gray-200'
                   >
                     Live{' '}
