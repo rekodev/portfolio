@@ -20,7 +20,7 @@ import web1 from '../../public/projects/champselect.png';
 import web2 from '../../public/projects/antiaging.png';
 import web3 from '../../public/projects/final-task.png';
 import web4 from '../../public/projects/react-team-task.png';
-import web5 from '../../public/projects/spacex-rockets.png';
+import web5 from '../../public/projects/rock-paper-scissors-lizard-spock.png';
 import web6 from '../../public/projects/portfolio.png';
 import nodejsLogo from '../../public/stack/nodejs-logo.png';
 import htmlLogo from '../../public/stack/HTML-logo.png';
@@ -224,6 +224,43 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <div className='shadow-lg rounded-lg overflow-hidden  dark:shadow-gray-800'>
+              <Image src={web5} alt={''} className='object-cover' />
+              <div className='flex flex-col h-full  p-4 bg-white dark:bg-gray-800 dark:text-white'>
+                <div className='flex items-center gap-1'>
+                  <h4 className='font-medium inline mr-1 text-lg'>
+                    Rock Paper Scissors
+                  </h4>
+                  <SiReact className='text-cyan-300 text-lg' />
+                  <BiLogoTypescript className='text-xl text-sky-600' />
+                  <SiStyledcomponents className='text-2xl dark:text-white' />
+                </div>
+                <p className='leading-6 text-sm dark:text-gray-200 text-gray-800 mt-3 mb-4'>
+                  An interactive browser game application of Rock Paper
+                  Scissors, modified to also include Lizard and Spock. You can
+                  play against the computer and your score is saved locally.
+                  Challenge provided by Frontend Mentor.
+                </p>
+                <div className='flex'>
+                  <a
+                    href='https://64d7a45bf5a8af118546d52f--jazzy-puppy-e4bd22.netlify.app/'
+                    className='flex items-center gap-1 justify-start text-sm text-gray-800 border border-gray-800 border-solid py-1 px-2 rounded-md mr-2  dark:text-gray-200 dark:border-gray-200'
+                  >
+                    Live{' '}
+                    <RiShareBoxLine className='text-lg dark:text-gray-200' />
+                  </a>
+                  <a
+                    href='https://github.com/rekodev/rock-paper-scissors'
+                    className='py-1 px-2 rounded-md text-sm text-white border border-solid border-transparent bg-gray-800 dark:text-gray-800 dark:bg-white'
+                  >
+                    <AiFillGithub className='inline text-lg mb-1 mr-1' />
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <div className='shadow-lg rounded-lg overflow-hidden  dark:shadow-gray-800'>
               <Image src={web2} alt={''} className='object-cover' />
               <div className='flex flex-col h-full  p-4 bg-white dark:bg-gray-800 dark:text-white'>
@@ -272,8 +309,7 @@ export default function Home() {
                   An app that fetches data from the database and displays users.
                   It allows you to interact by adding new users, editing and
                   deleting existing ones. The app also includes pagination and a
-                  search tool. Instructions on how to launch the application are
-                  within the README.md file on GitHub.
+                  search tool. You can find launch instructions on GitHub.
                 </p>
                 <div className='flex'>
                   <a
@@ -301,9 +337,8 @@ export default function Home() {
                 <p className='leading-6 text-sm dark:text-gray-200 text-gray-800 mt-3 mb-4'>
                   In collaboration with my team at CodeAcademy, we developed an
                   application that integrates a suite of tools including salary
-                  and tax calculators, an individual activity tax calculator, a
-                  VAT calculator, a currency converter, and a
-                  &apos;sum-to-words&apos; display feature.
+                  and tax calculators, a VAT calculator, a currency converter,
+                  and a &apos;sum-to-words&apos; display feature.
                 </p>
                 <div className='flex'>
                   <a
@@ -323,42 +358,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className='shadow-lg rounded-lg overflow-hidden  dark:shadow-gray-800'>
-              <Image src={web5} alt={''} className='object-cover' />
-              <div className='flex flex-col h-full  p-4 bg-white dark:bg-gray-800 dark:text-white'>
-                <div className='flex items-center gap-1'>
-                  <h4 className='font-medium inline mr-1 text-lg'>
-                    SpaceX Rockets
-                  </h4>
-                  <SiReact className='text-cyan-300 text-lg' />
-                  <BiLogoTypescript className='text-xl text-sky-600' />
-                  <SiStyledcomponents className='text-2xl dark:text-white' />
-                </div>
-                <p className='leading-6 text-sm dark:text-gray-200 text-gray-800 mt-3 mb-4'>
-                  A simple tool that retrieves and displays SpaceX rocket data
-                  via their official API. The application features a search
-                  function to find rockets based on specific attributes, and a
-                  separate filter option to sort the results alphabetically and
-                  numerically.
-                </p>
-                <div className='flex'>
-                  <a
-                    href='https://zippy-begonia-3c7ed9.netlify.app/'
-                    className='flex items-center gap-1 justify-start text-sm text-gray-800 border border-gray-800 border-solid py-1 px-2 rounded-md mr-2  dark:text-gray-200 dark:border-gray-200'
-                  >
-                    Live{' '}
-                    <RiShareBoxLine className='text-lg dark:text-gray-200' />
-                  </a>
-                  <a
-                    href='https://github.com/rekodev/spacex_rockets'
-                    className='py-1 px-2 rounded-md text-sm text-white border border-solid border-transparent bg-gray-800 dark:text-gray-800 dark:bg-white'
-                  >
-                    <AiFillGithub className='inline text-lg mb-1 mr-1' />
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </div>
+
             <div className='shadow-lg rounded-lg overflow-hidden  dark:shadow-gray-800'>
               <Image src={web6} alt={''} className='object-cover' />
               <div className='flex flex-col h-full  p-4 bg-white dark:bg-gray-800 dark:text-white'>
