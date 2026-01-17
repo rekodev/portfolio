@@ -39,7 +39,7 @@ export default function AboutSection() {
   );
 
   return (
-    <section className="mx-auto flex w-full py-16">
+    <section id="about" className="mx-auto flex w-full py-16">
       <div className="flex w-1/3 flex-col gap-10">
         <h3 className="font-medium uppercase">About</h3>
         <div className="flex flex-col gap-4">

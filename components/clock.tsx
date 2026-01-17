@@ -6,7 +6,6 @@ const formatTime = (date: Date) =>
   date.toLocaleTimeString(undefined, {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false,
     timeZoneName: "short",
   });
 
@@ -21,5 +20,5 @@ export default function Clock() {
     return () => clearInterval(interval);
   }, []);
 
-  return <p className="font-mono text-sm">{time}</p>;
+  return <p className="ml-4 font-mono text-sm">{time}</p>;
 }

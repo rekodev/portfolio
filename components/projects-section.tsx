@@ -1,3 +1,3 @@
 export default function ProjectsSection() {
-  return <div>Projects Section</div>;
+  return <section id="projects">Projects Section</section>;
 }
