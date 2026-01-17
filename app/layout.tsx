@@ -28,8 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} relative flex min-h-screen flex-col antialiased`}
       >
+        <div className="pointer-events-none fixed inset-0 -z-10 bg-[conic-gradient(from_180deg_at_100%_100%,_rgba(254,215,170,0.9)_0deg_90deg,_rgba(254,215,170,0.0)_140deg_360deg)]">
+          <div className="absolute inset-0 bg-black/10 backdrop-blur-[40px]" />
+        </div>
         <Header />
         {children}
         <Footer />

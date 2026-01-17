@@ -5,7 +5,7 @@ import { FULL_NAME } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t">
+    <footer className="border-accent-foreground/10 border-t">
       <div className="mx-auto flex w-full max-w-6xl px-4 pt-16 pb-10">
         <h3 className="w-1/3 font-medium uppercase">Contact</h3>
         <div className="flex w-2/3 flex-col gap-10">
@@ -18,7 +18,7 @@ export default function Footer() {
               Get in touch <ArrowUpRight className="" />
             </Link>
           </Button>
-          <div className="text-muted-foreground flex w-full flex-col border-t pt-10 text-sm">
+          <div className="text-muted-foreground border-accent-foreground/10 flex w-full flex-col border-t pt-10 text-sm">
             <p className="self-end">
               © {new Date().getFullYear()} {FULL_NAME}
             </p>
