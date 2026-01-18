@@ -84,7 +84,9 @@ export default function ProjectsSection() {
           {PROJECTS.length.toString().padStart(2, "0")} projects
         </p>
       </div>
-      <div className="mt-12">{PROJECTS.map(renderProjectSubsection)}</div>
+      <div className="mt-0 md:mt-12">
+        {PROJECTS.map(renderProjectSubsection)}
+      </div>
     </section>
   );
 }

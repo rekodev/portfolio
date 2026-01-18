@@ -35,7 +35,14 @@ export default function SocialLink({
         rel="noreferrer"
       >
         {icon && (
-          <Image src={`/${icon}.svg`} alt={icon} width={16} height={16} />
+          <Image
+            priority
+            loading="eager"
+            src={`/${icon}.svg`}
+            alt={icon}
+            width={16}
+            height={16}
+          />
         )}
         {label} <ArrowUpRight className="h-4 w-4" />
       </Link>
