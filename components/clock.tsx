@@ -20,5 +20,5 @@ export default function Clock() {
     return () => clearInterval(interval);
   }, []);
 
-  return <p className="ml-4 font-mono text-sm">{time}</p>;
+  return <p className="font-mono text-sm">{time}</p>;
 }

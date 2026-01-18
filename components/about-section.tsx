@@ -1,6 +1,7 @@
-import { Mail, MapPinHouse } from "lucide-react";
-import { Badge } from "./ui/badge";
 import Link from "next/link";
+import { Mail, MapPinHouse } from "lucide-react";
+
+import { Badge } from "./ui/badge";
 
 export default function AboutSection() {
   const frontendTechnologies = [

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "./ui/button";
+
 import { FULL_NAME } from "@/lib/constants";
+
+import { Button } from "./ui/button";
 
 export default function Footer() {
   return (

@@ -1,27 +1,28 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+
 import { Button } from "./ui/button";
-import Image from "next/image";
+
+const links = [
+  {
+    label: "GitHub",
+    icon: "github",
+    href: "https://github.com/rekodev",
+  },
+  {
+    label: "LinkedIn",
+    icon: "linkedin",
+    href: "https://linkedin.com/in/arturas-tyskevicius",
+  },
+  {
+    label: "X",
+    icon: "x",
+    href: "https://x.com/rekodev",
+  },
+];
 
 export default function HeroSection() {
-  const links = [
-    {
-      label: "GitHub",
-      icon: "github",
-      href: "https://github.com/rekodev",
-    },
-    {
-      label: "LinkedIn",
-      icon: "linkedin",
-      href: "https://linkedin.com/arturas-tyskevicius",
-    },
-    {
-      label: "X",
-      icon: "x",
-      href: "https://x.com/rekodev",
-    },
-  ];
-
   const renderLink = ({ label, href, icon }: (typeof links)[number]) => (
     <Button asChild key={label} variant="outline">
       <Link className="flex items-center gap-0.5" href={href} target="_blank">
@@ -32,7 +33,7 @@ export default function HeroSection() {
   );
 
   return (
-    <section className="flex flex-col gap-6 py-16">
+    <section id="hero" className="flex flex-col gap-6 py-16">
       <h1 className="text-lg font-medium">Artūras Tyškevičius</h1>
       <p className="text-secondary-foreground max-w-2xl text-4xl leading-snug font-medium">
         <span className="text-chart-5 font-serif italic">
