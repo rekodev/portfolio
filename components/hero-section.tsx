@@ -1,42 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 
-import { Button } from "./ui/button";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
-const links = [
-  {
-    label: "GitHub",
-    icon: "github",
-    href: "https://github.com/rekodev",
-  },
-  {
-    label: "LinkedIn",
-    icon: "linkedin",
-    href: "https://linkedin.com/in/arturas-tyskevicius",
-  },
-  {
-    label: "X",
-    icon: "x",
-    href: "https://x.com/rekodev",
-  },
-];
+import SocialLink from "./social-link";
 
 export default function HeroSection() {
-  const renderLink = ({ label, href, icon }: (typeof links)[number]) => (
-    <Button asChild key={label} variant="outline">
-      <Link
-        className="flex items-center gap-0.5"
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <Image src={`/${icon}.svg`} alt={icon} width={16} height={16} />
-        {label} <ArrowUpRight className="h-4 w-4" />
-      </Link>
-    </Button>
-  );
-
   return (
     <section id="hero" className="flex scroll-mt-24 flex-col gap-6 py-16">
       <h1 className="text-lg font-medium">Artūras Tyškevičius</h1>
@@ -54,7 +22,16 @@ export default function HeroSection() {
         </Link>
         . Also doing some freelance work on the side.
       </p>
-      <div className="flex gap-2">{links.map(renderLink)}</div>
+      <div className="flex gap-2">
+        {SOCIAL_LINKS.map((socialLink) => (
+          <SocialLink
+            key={socialLink.href}
+            href={socialLink.href}
+            label={socialLink.label}
+            icon={socialLink.icon}
+          />
+        ))}
+      </div>
     </section>
   );
 }
