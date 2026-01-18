@@ -2,34 +2,21 @@ import Link from "next/link";
 import { CodeXml } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { NAV_LINKS } from "@/lib/constants";
 
 import Clock from "./clock";
 import { ModeToggle } from "./mode-toggle";
-
-const navLinks = [
-  {
-    href: "#about",
-    text: "About Me",
-  },
-  {
-    href: "#projects",
-    text: "Projects",
-  },
-  {
-    href: "#contact",
-    text: "Contact",
-  },
-];
+import MobileNav from "./mobile-nav";
 
 export default function Header() {
-  const renderLink = (link: (typeof navLinks)[number]) => (
+  const renderLink = (link: (typeof NAV_LINKS)[number]) => (
     <Button className="text-md px-0" key={link.href} asChild variant="link">
       <Link href={link.href}>{link.text}</Link>
     </Button>
   );
 
   return (
-    <div className="border-accent-foreground/10 bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-xl">
+    <div className="border-border bg-background/20 sticky top-0 z-50 w-full border-b backdrop-blur-xl backdrop-saturate-150">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link
           href="#hero"
@@ -37,8 +24,9 @@ export default function Header() {
         >
           <CodeXml className="h-5 w-5" /> rekodev
         </Link>
-        <div className="flex items-center gap-6">
-          {navLinks.map(renderLink)}
+        <MobileNav />
+        <div className="hidden items-center gap-6 md:flex">
+          {NAV_LINKS.map(renderLink)}
           <ModeToggle />
           <Clock />
         </div>

@@ -25,7 +25,12 @@ const links = [
 export default function HeroSection() {
   const renderLink = ({ label, href, icon }: (typeof links)[number]) => (
     <Button asChild key={label} variant="outline">
-      <Link className="flex items-center gap-0.5" href={href} target="_blank">
+      <Link
+        className="flex items-center gap-0.5"
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+      >
         <Image src={`/${icon}.svg`} alt={icon} width={16} height={16} />
         {label} <ArrowUpRight className="h-4 w-4" />
       </Link>
@@ -33,10 +38,10 @@ export default function HeroSection() {
   );
 
   return (
-    <section id="hero" className="flex flex-col gap-6 py-16">
+    <section id="hero" className="flex scroll-mt-24 flex-col gap-6 py-16">
       <h1 className="text-lg font-medium">Artūras Tyškevičius</h1>
       <p className="text-secondary-foreground max-w-2xl text-4xl leading-snug font-medium">
-        <span className="text-chart-5 font-serif italic">
+        <span className="text-chart-5 [font-family:var(--font-syne)] font-semibold">
           Crafting interfaces.
         </span>{" "}
         Building polished software and web experiences. Experimenting with
