@@ -42,6 +42,7 @@ export default function SocialLink({
             alt={icon}
             width={16}
             height={16}
+            className="dark:invert"
           />
         )}
         {label} <ArrowUpRight className="h-4 w-4" />

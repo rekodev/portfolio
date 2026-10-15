@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const formatTime = (date: Date) =>
   date.toLocaleTimeString(undefined, {
@@ -9,19 +9,21 @@ const formatTime = (date: Date) =>
     timeZoneName: "short",
   });
 
+const subscribe = (onTick: () => void) => {
+  const interval = setInterval(onTick, 1000);
+  return () => clearInterval(interval);
+};
+
+// The server can't know the visitor's time zone, so it renders nothing and
+// the client fills the time in after hydration.
+const getServerTime = () => null;
+const getClientTime = () => formatTime(new Date());
+
 export default function Clock() {
-  const [time, setTime] = useState(formatTime(new Date()));
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(formatTime(new Date()));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const time = useSyncExternalStore(subscribe, getClientTime, getServerTime);
 
   return (
-    <p className="text-foreground md:text-muted-foreground font-mono text-sm">
+    <p className="text-foreground md:text-muted-foreground min-w-[9ch] font-mono text-sm">
       {time}
     </p>
   );
