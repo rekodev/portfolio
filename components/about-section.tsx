@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Mail, MapPinHouse } from "lucide-react";
 
+import ExperienceList from "./experience-list";
+import SectionHeading from "./section-heading";
 import { Badge } from "./ui/badge";
 
 const frontendTechnologies = [
@@ -22,7 +24,7 @@ const backendTechnologies = [
 export default function AboutSection() {
   const renderTechnologiesSubsection = (technologies: Array<string>) => (
     <div className="flex w-full flex-col gap-4 md:w-1/2">
-      <p className="text-muted-foreground text-sm uppercase">
+      <p className="text-muted-foreground text-sm">
         {technologies.includes("React") ? "Frontend" : "Backend"}
       </p>
       <div className="flex max-w-64 flex-wrap gap-2">
@@ -45,7 +47,7 @@ export default function AboutSection() {
       className="mx-auto flex w-full scroll-mt-24 flex-col gap-12 py-16 md:flex-row"
     >
       <div className="flex w-full flex-col gap-6 md:w-1/3 md:gap-10">
-        <h3 className="font-medium uppercase">About</h3>
+        <SectionHeading>About</SectionHeading>
         <div className="flex flex-col gap-4">
           <p className="text-muted-foreground flex items-center gap-2 text-sm">
             <MapPinHouse className="h-4 w-4" /> Vilnius, Lithuania
@@ -62,9 +64,15 @@ export default function AboutSection() {
       <div className="flex w-full flex-col gap-10 md:w-2/3">
         <div className="flex flex-col gap-6">
           <p className="text-lg">
-            I’m a Web Developer who cares a lot about the details. I like
+            I’m a Frontend Engineer who cares a lot about the details. I like
             building things that look good, feel right to use, and work the way
             they should.
+          </p>
+          {/* TODO: add a concrete UI detail you shipped at Ovoko or Vinted */}
+          <p className="text-muted-foreground">
+            On the side I build InvoiceTrackr end to end, from Lithuanian tax
+            rules and immutable invoices to PDF generation and the UI around
+            them.
           </p>
           <p className="text-muted-foreground">
             Before getting into tech, I spent a lot of time making music, and at
@@ -81,9 +89,7 @@ export default function AboutSection() {
         </div>
 
         <div className="border-border flex w-full flex-col gap-4 border-t pt-8 md:pt-10">
-          <h4 className="text-muted-foreground text-lg uppercase">
-            Technologies
-          </h4>
+          <h3 className="text-lg font-medium">Technologies</h3>
           <div className="flex flex-col gap-6 md:flex-row md:gap-0">
             {renderTechnologiesSubsection(frontendTechnologies)}
             {renderTechnologiesSubsection(backendTechnologies)}
@@ -91,18 +97,8 @@ export default function AboutSection() {
         </div>
 
         <div className="border-border flex w-full flex-col gap-4 border-t pt-8 md:pt-10">
-          <h4 className="text-muted-foreground text-lg uppercase">
-            Experience
-          </h4>
-          <div>
-            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-              <p>Vinted</p>
-              <p className="text-muted-foreground">Web Engineer</p>
-              <p className="text-muted-foreground font-mono text-sm">
-                2023 - Present
-              </p>
-            </div>
-          </div>
+          <h3 className="text-lg font-medium">Experience</h3>
+          <ExperienceList />
         </div>
       </div>
     </section>
