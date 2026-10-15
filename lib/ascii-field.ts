@@ -1,4 +1,3 @@
-// Small seeded PRNG so the pattern is identical on every render.
 function createRandom(seed: number) {
   let state = seed >>> 0;
   return () => {
@@ -10,70 +9,160 @@ function createRandom(seed: number) {
   };
 }
 
-// Smooth 2D value noise built on a seeded lattice.
-function createNoise(seed: number) {
-  const random = createRandom(seed);
-  const size = 256;
-  const values = Array.from({ length: size * size }, () => random());
-  const at = (x: number, y: number) =>
-    values[(((y % size) + size) % size) * size + (((x % size) + size) % size)];
-  const smooth = (t: number) => t * t * (3 - 2 * t);
-
-  return (x: number, y: number) => {
-    const x0 = Math.floor(x);
-    const y0 = Math.floor(y);
-    const sx = smooth(x - x0);
-    const sy = smooth(y - y0);
-    const top = at(x0, y0) + (at(x0 + 1, y0) - at(x0, y0)) * sx;
-    const bottom = at(x0, y0 + 1) + (at(x0 + 1, y0 + 1) - at(x0, y0 + 1)) * sx;
-    return top + (bottom - top) * sy;
-  };
-}
-
-// Layered noise: big soft shapes with finer billows on top.
-function fbm(noise: (x: number, y: number) => number, x: number, y: number) {
-  let value = 0;
-  let amplitude = 0.5;
-  let frequency = 1;
-  for (let octave = 0; octave < 4; octave++) {
-    value += amplitude * noise(x * frequency, y * frequency);
-    amplitude /= 2;
-    frequency *= 2;
-  }
-  return value / 0.9375;
-}
-
-const smoothstep = (edge0: number, edge1: number, x: number) => {
-  const t = Math.min(1, Math.max(0, (x - edge0) / (edge1 - edge0)));
-  return t * t * (3 - 2 * t);
+export type Wave = {
+  y: number;
+  amplitude: number;
+  wavelength: number;
+  thickness: number;
+  speed: number;
+  phase: number;
 };
-
-// Monospace cells are about twice as tall as they are wide.
-const CELL_ASPECT = 2;
 
 type Options = {
   cols: number;
   rows: number;
   seed: number;
-  scale?: number;
+  waves: Array<Wave>;
+  cellWidth: number;
+  cellHeight: number;
 };
 
-// Builds an even field of 0/1 characters whose density drifts gently with
-// soft noise, so it reads as one texture rather than separate patches.
-export function generateAsciiField({ cols, rows, seed, scale = 40 }: Options) {
+export const GLYPHS = [
+  null,
+  { char: "1", alpha: 0.3 },
+  { char: "0", alpha: 0.6 },
+  { char: "1", alpha: 0.6 },
+  { char: "0", alpha: 1 },
+  { char: "1", alpha: 1 },
+] as const;
+
+export function createSoundwave({
+  cols,
+  rows,
+  seed,
+  waves,
+  cellWidth,
+  cellHeight,
+}: Options) {
   const random = createRandom(seed);
-  const noise = createNoise(seed + 1);
-  const lines: Array<string> = [];
+  const cellCount = cols * rows;
+  const presence = Float32Array.from({ length: cellCount }, () => random());
+  const glyph = Float32Array.from({ length: cellCount }, () => random());
 
-  for (let y = 0; y < rows; y++) {
-    let line = "";
-    for (let x = 0; x < cols; x++) {
-      const drift = fbm(noise, x / scale, (y * CELL_ASPECT) / scale);
-      const density = 0.04 + 0.5 * smoothstep(0.38, 0.72, drift);
-      line += random() < density ? (random() < 0.6 ? "1" : "0") : " ";
+  const loudness = (x: number, time: number) =>
+    0.65 +
+    0.25 * Math.sin(x / 520 + time * 0.25) +
+    0.1 * Math.sin(x / 230 - time * 0.4);
+
+  const waveCount = waves.length;
+  const centers = new Float32Array(waveCount * cols);
+  const halfWidths = new Float32Array(waveCount * cols);
+  const brightness = new Float32Array(cols);
+  const codes = new Uint8Array(cellCount);
+
+  return function render(time: number, colStart = 0, colEnd = cols) {
+    codes.fill(0);
+    let top = Infinity;
+    let bottom = -Infinity;
+
+    for (let col = colStart; col < colEnd; col++) {
+      const px = (col + 0.5) * cellWidth;
+      const volume = loudness(px, time);
+      brightness[col] = 0.45 + 0.55 * volume;
+
+      for (let w = 0; w < waveCount; w++) {
+        const wave = waves[w];
+        const angle =
+          (px / wave.wavelength - time * wave.speed) * Math.PI * 2 + wave.phase;
+        const center =
+          wave.y +
+          wave.amplitude *
+            volume *
+            (Math.sin(angle) + 0.3 * Math.sin(angle * 2.3 + wave.phase));
+        const halfWidth = (wave.thickness * (0.5 + volume)) / 2;
+        centers[w * cols + col] = center;
+        halfWidths[w * cols + col] = halfWidth;
+        top = Math.min(top, center - halfWidth);
+        bottom = Math.max(bottom, center + halfWidth);
+      }
     }
-    lines.push(line.trimEnd());
-  }
 
-  return lines.join("\n");
+    const firstRow = Math.max(0, Math.floor(top / cellHeight));
+    const lastRow = Math.min(rows - 1, Math.ceil(bottom / cellHeight));
+
+    for (let row = firstRow; row <= lastRow; row++) {
+      const py = (row + 0.5) * cellHeight;
+      for (let col = colStart; col < colEnd; col++) {
+        let intensity = 0;
+        for (let w = 0; w < waveCount; w++) {
+          const index = w * cols + col;
+          const distance = Math.abs(py - centers[index]) / halfWidths[index];
+          if (distance >= 1) continue;
+          intensity = Math.max(intensity, Math.sqrt(1 - distance * distance));
+        }
+        if (intensity === 0) continue;
+        intensity *= brightness[col];
+
+        const cell = row * cols + col;
+        if (presence[cell] >= 0.08 + 0.72 * intensity) continue;
+        if (intensity > 0.72) codes[cell] = glyph[cell] < 0.75 ? 4 : 5;
+        else if (intensity > 0.42) codes[cell] = glyph[cell] < 0.5 ? 2 : 3;
+        else codes[cell] = 1;
+      }
+    }
+
+    return codes;
+  };
+}
+
+export type AsciiText = { bright: string; mid: string; dim: string };
+
+export function codesToText(
+  codes: Uint8Array,
+  cols: number,
+  rows: number,
+): AsciiText {
+  const layers = {
+    bright: [] as Array<string>,
+    mid: [] as Array<string>,
+    dim: [] as Array<string>,
+  };
+  for (let row = 0; row < rows; row++) {
+    let bright = "";
+    let mid = "";
+    let dim = "";
+    for (let col = 0; col < cols; col++) {
+      const code = codes[row * cols + col];
+      const char = GLYPHS[code]?.char ?? " ";
+      bright += code >= 4 ? char : " ";
+      mid += code === 2 || code === 3 ? char : " ";
+      dim += code === 1 ? char : " ";
+    }
+    layers.bright.push(bright.trimEnd());
+    layers.mid.push(mid.trimEnd());
+    layers.dim.push(dim.trimEnd());
+  }
+  return {
+    bright: layers.bright.join("\n"),
+    mid: layers.mid.join("\n"),
+    dim: layers.dim.join("\n"),
+  };
+}
+
+export function cssGradientLine(angle: number, width: number, height: number) {
+  const radians = (angle * Math.PI) / 180;
+  const dx = Math.sin(radians);
+  const dy = -Math.cos(radians);
+  const half =
+    (Math.abs(width * Math.sin(radians)) +
+      Math.abs(height * Math.cos(radians))) /
+    2;
+  const cx = width / 2;
+  const cy = height / 2;
+  return {
+    x0: cx - dx * half,
+    y0: cy - dy * half,
+    x1: cx + dx * half,
+    y1: cy + dy * half,
+  };
 }

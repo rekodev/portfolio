@@ -9,8 +9,6 @@ type Props = {
   className?: string;
 };
 
-// Static map renders, made once from the open Positron / Dark styles, so the
-// page ships two small images instead of a map library.
 export default function LocationMap({
   lightSrc,
   darkSrc,

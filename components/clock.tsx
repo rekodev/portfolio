@@ -14,8 +14,6 @@ const subscribe = (onTick: () => void) => {
   return () => clearInterval(interval);
 };
 
-// The server can't know the visitor's time zone, so it renders nothing and
-// the client fills the time in after hydration.
 const getServerTime = () => null;
 const getClientTime = () => formatTime(new Date());
 

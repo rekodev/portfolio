@@ -12,7 +12,6 @@ export default function ExperienceList() {
 
         return (
           <li key={experience.company} className="relative pl-7">
-            {/* Rail runs from this role's dot to the next one, so it starts and ends on a dot. */}
             {!isLast && (
               <span
                 aria-hidden

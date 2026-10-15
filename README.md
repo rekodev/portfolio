@@ -11,7 +11,7 @@ Personal site of Artūras Tyškevičius, Frontend Engineer at Ovoko (previously 
 - **Experience:** Ovoko, Vinted and Edigino, with a downloadable one-page resume
 - **Selected work:** InvoiceTrackr, the Zero Guess Claude Code plugin and the Gargždai tourism kiosk
 - **InvoiceTrackr case study** at `/projects/invoicetrackr`: problem, architecture, tradeoffs
-- Monochrome light and dark themes in Geist, over a soft orange 0/1 ASCII backdrop generated on the server
+- Monochrome light and dark themes in Geist, over a slowly moving orange ASCII soundwave (paused for reduced motion)
 
 ## Stack
 
